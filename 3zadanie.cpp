@@ -5,7 +5,6 @@ using namespace std;
 
 int modValue(int value, int m) {
     value %= m;
-
     if (value < 0) {
         value += m;
     }
@@ -56,7 +55,7 @@ int main() {
 
     int initialCount = max(a, b);
 
-    vector<int> sequence(initialCount);
+    vector<int> sequence(initialCount); //вектор последовательности
 
     cout << "Введите " << initialCount << " начальных значений:\n";
 
