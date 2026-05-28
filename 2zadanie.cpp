@@ -5,10 +5,10 @@
 
 using namespace std;
 
-void printVector(const vector<int>& values, const string& title) {
-    cout << title << ": ";
-    for (int value : values) {
-        cout << value << ' ';
+void printVector(const vector<int>& values, const string& zagolovok) {
+    cout << zagolovok << ": ";
+    for (int x : values) {
+        cout << x << ' ';
     }
     cout << '\n';
 }
@@ -29,7 +29,7 @@ int main() {
     cin >> n;
 
     if (n < 10) {
-        cout << "Ошибка: n должно быть не меньше 10\n";
+        cout << "Ошибка: n должен быть не меньше 10\n";
         return 1;
     }
 
@@ -38,7 +38,7 @@ int main() {
 
     int sumEvenAfterOdd = 0;
     vector<int> evenAfterOdd;
-    for (size_t i = 1; i < arr.size(); i++) {
+    for (size_t i = 1; i < arr.size(); ++i) {
         if (arr[i] % 2 == 0 && arr[i - 1] % 2 != 0) {
             evenAfterOdd.push_back(arr[i]);
             sumEvenAfterOdd += arr[i];
@@ -46,10 +46,9 @@ int main() {
     }
 
     printVector(evenAfterOdd, "Четные элементы после нечетных");
-    cout << "Сумма таких элементов: " << sumEvenAfterOdd << '\n';
+    cout << "Сумма таких элементов: " << sumEvenAfterOdd<< '\n';
 
     vector<int> localMinimums;
-
     for (size_t i = 1; i + 1 < arr.size(); i++) {
         if (arr[i] < arr[i - 1] && arr[i] < arr[i + 1]) {
             localMinimums.push_back(arr[i]);
@@ -61,11 +60,11 @@ int main() {
     vector<int> evens;
     vector<int> odds;
 
-    for (int value : arr) {
-        if (value % 2 == 0) {
-            evens.push_back(value);
+    for (int x : arr) {
+        if (x % 2 == 0) {
+            evens.push_back(x);
         } else {
-            odds.push_back(value);
+            odds.push_back(x);
         }
     }
 
@@ -76,13 +75,12 @@ int main() {
     size_t oddIndex = 0;
 
     vector<int> sortedByParity = arr;
-
-    for (int& value : sortedByParity) {
-        if (value % 2 == 0) {
-            value = evens[evenIndex];
+    for (int& x : sortedByParity) {
+        if (x % 2 == 0) {
+            x = evens[evenIndex];
             evenIndex++;
         } else {
-            value = odds[oddIndex];
+            x = odds[oddIndex];
             oddIndex++;
         }
     }
@@ -101,15 +99,14 @@ int main() {
     printVector(secondArray, "Второй массив");
 
     vector<int> count(121, 0);
-
-    for (int value : secondArray) {
-        count[value]++;
+    for (int x : secondArray) {
+        count[x]++;
     }
 
     int mostFrequent = secondArray[0];
-    for (int value : secondArray) {
-        if (count[value] > count[mostFrequent]) {
-            mostFrequent = value;
+    for (int x : secondArray) {
+        if (count[x] > count[mostFrequent]) {
+            mostFrequent = x;
         }
     }
 
@@ -117,9 +114,9 @@ int main() {
     cout << "Количество повторений: " << count[mostFrequent] << '\n';
 
     vector<int> greaterThanMostFrequent;
-    for (int value : secondArray) {
-        if (value > mostFrequent) {
-            greaterThanMostFrequent.push_back(value);
+    for (int x : secondArray) {
+        if (x > mostFrequent) {
+            greaterThanMostFrequent.push_back(x);
         }
     }
 
