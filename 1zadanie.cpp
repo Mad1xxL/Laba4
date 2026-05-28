@@ -18,22 +18,22 @@ double phi(double x) {
     return -cos(x) / 2;
 }
 
-void bisection(double a, double b) {
+void sqrtNaOtrezke(double a, double b) {
     cout << "\nМетод половинного деления\n";
     cout << setw(5) << "N"
-         << setw(15) << "an"
-         << setw(15) << "bn"
-         << setw(15) << "bn - an" << '\n';
+         << setw(15) << "a(n)"
+         << setw(15) << "b(n)"
+         << setw(15) << "b(n) - a(n)" << '\n';
 
     int n = 0;
 
-    while (fabs(b - a) > EPS) {
-        double c = (a + b) / 2;
+    while (abs(b - a) > EPS) {
+        double seredina = (a + b) / 2;
 
-        if (f(a) * f(c) <= 0) {
-            b = c;
+        if (f(a) * f(seredina) <= 0) {
+            b = seredina;
         } else {
-            a = c;
+            a = seredina;
         }
 
         cout << setw(5) << ++n
@@ -48,9 +48,9 @@ void bisection(double a, double b) {
 void newton(double x0) {
     cout << "\nМетод Ньютона\n";
     cout << setw(5) << "N"
-         << setw(15) << "xn"
-         << setw(15) << "xn+1"
-         << setw(15) << "xn+1 - xn" << '\n';
+         << setw(15) << "x(n)"
+         << setw(15) << "x(n+1)"
+         << setw(15) << "x(n+1) - x(n)" << '\n';
 
     int n = 0;
     double x1;
@@ -61,19 +61,19 @@ void newton(double x0) {
         cout << setw(5) << n
              << setw(15) << x0
              << setw(15) << x1
-             << setw(15) << fabs(x1 - x0) << '\n';
+             << setw(15) << abs(x1 - x0) << '\n';
 
         x0 = x1;
         n++;
-    } while (fabs(x1 - x0) > EPS);
+    } while (abs(x1 - x0) > EPS);
 }
 
 void simpleIterations(double x0) {
     cout << "\nМетод простых итераций\n";
     cout << setw(5) << "N"
-         << setw(15) << "xn"
-         << setw(15) << "xn+1"
-         << setw(15) << "xn+1 - xn" << '\n';
+         << setw(15) << "x(n)"
+         << setw(15) << "x(n+1)"
+         << setw(15) << "x(n+1) - x(n)" << '\n';
 
     int n = 0;
     double x1;
@@ -84,9 +84,9 @@ void simpleIterations(double x0) {
         cout << setw(5) << n
              << setw(15) << x0
              << setw(15) << x1
-             << setw(15) << fabs(x1 - x0) << '\n';
+             << setw(15) << abs(x1 - x0) << '\n';
 
-        if (fabs(x1 - x0) <= EPS) {
+        if (abs(x1 - x0) <= EPS) {
             break;
         }
 
@@ -103,7 +103,7 @@ int main() {
     double a = -1;
     double b = 0;
 
-    bisection(a, b);
+    sqrtNaOtrezke(a, b);
     newton(-1);
     simpleIterations(-1);
 
