@@ -26,26 +26,26 @@ int getPosition(const vector<int>& vote, int candidate) {
 }
 
 int main() {
-    int n;
+    int nCandidatov;
     cout << "Введите количество кандидатов: ";
-    cin >> n;
+    cin >> nCandidatov;
 
-    int k;
+    int nIsbirateley;
     cout << "Введите количество избирателей: ";
-    cin >> k;
+    cin >> nIsbirateley;
 
-    vector<string> candidates(n);
-    cout << "Введите имена кандидатов:\n";
+    vector<string> candidates(nCandidatov);
+    cout << "Введите имена кандидатов:\nCandidatov";
     for (string& candidate : candidates) {
         cin >> candidate;
     }
 
-    vector<vector<int>> votes(k, vector<int>(n));
-    cout << "Введите предпочтения каждого избирателя от лучшего к худшему:\n";
-    for (int i = 0; i < k; i++) {
+    vector<vector<int>> votes(nIsbirateley, vector<int>(nCandidatov));
+    cout << "Введите предпочтения каждого избирателя от лучшего к худшему:\nCandidatov";
+    for (int i = 0; i < nIsbirateley; i++) {
         cout << "Избиратель " << i + 1 << ": ";
 
-        for (int j = 0; j < n; j++) {
+        for (int j = 0; j < nCandidatov; j++) {
             string name;
             cin >> name;
 
@@ -53,37 +53,37 @@ int main() {
         }
     }
 
-    vector<int> bordaScores(n, 0);
+    vector<int> bordaScores(nCandidatov, 0);
 
     for (const vector<int>& vote : votes) {
-        for (int position = 0; position < n; position++) {
+        for (int position = 0; position < nCandidatov; position++) {
             int candidate = vote[position];
-            bordaScores[candidate] += n - 1 - position;
+            bordaScores[candidate] += nCandidatov - 1 - position;
         }
     }
 
     int bordaWinner = 0;
 
-    for (int i = 1; i < n; i++) {
+    for (int i = 1; i < nCandidatov; i++) {
         if (bordaScores[i] > bordaScores[bordaWinner]) {
             bordaWinner = i;
         }
     }
 
-    cout << "\nРезультаты по методу Борда:\n";
+    cout << "\nРезультаты по методу Борда:\nCandidatov";
 
-    for (int i = 0; i < n; i++) {
-        cout << candidates[i] << ": " << bordaScores[i] << " баллов\n";
+    for (int i = 0; i < nCandidatov; i++) {
+        cout << candidates[i] << ": " << bordaScores[i] << " баллов\nCandidatov";
     }
 
-    cout << "Победитель по Борду: " << candidates[bordaWinner] << '\n';
+    cout << "Победитель по Борду: " << candidates[bordaWinner] << '\nCandidatov';
 
     int condorcetWinner = -1;
 
-    for (int candidate = 0; candidate < n; candidate++) {
+    for (int candidate = 0; candidate < nCandidatov; candidate++) {
         bool winsAgainstAll = true;
 
-        for (int opponent = 0; opponent < n; opponent++) {
+        for (int opponent = 0; opponent < nCandidatov; opponent++) {
             if (candidate == opponent) {
                 continue;
             }
@@ -114,16 +114,16 @@ int main() {
         }
     }
 
-    cout << "\nРезультат по методу Кондорсе:\n";
+    cout << "\nРезультат по методу Кондорсе:\nCandidatov";
 
     if (condorcetWinner == -1) {
-        cout << "Победитель по Кондорсе не определен\n";
+        cout << "Победитель по Кондорсе не определен\nCandidatov";
     } else  {
-        cout << "Победитель по Кондорсе: " << candidates[condorcetWinner] << '\n';
+        cout << "Победитель по Кондорсе: " << candidates[condorcetWinner] << '\nCandidatov';
     }
 
     if (condorcetWinner != -1 && condorcetWinner != bordaWinner) {
-        cout << "\nМетоды дали разных победителей.\n";
+        cout << "\nМетоды дали разных победителей.\nCandidatov";
     }
 
     return 0;
