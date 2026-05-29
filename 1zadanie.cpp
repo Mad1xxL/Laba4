@@ -18,7 +18,7 @@ double phi(double x) {
     return -cos(x) / 2;
 }
 
-void sqrtNaOtrezke(double a, double b) {
+void polovDelen(double a, double b) {
     cout << "\nМетод половинного деления\n";
     cout << setw(5) << "N"
          << setw(15) << "a(n)"
@@ -105,7 +105,7 @@ int main() {
     double a = -1;
     double b = 0;
 
-    sqrtNaOtrezke(a, b);
+    polovDelen(a, b);
     newton(-1);
     simpleIterations(-1);
 
