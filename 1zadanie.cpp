@@ -23,7 +23,7 @@ void sqrtNaOtrezke(double a, double b) {
     cout << setw(5) << "N"
          << setw(15) << "a(n)"
          << setw(15) << "b(n)"
-         << setw(15) << "b(n) - a(n)" << '\n';
+         << setw(15) << "b(n)-a(n)" << '\n';
 
     int n = 0;
 
@@ -39,7 +39,7 @@ void sqrtNaOtrezke(double a, double b) {
         cout << setw(5) << ++n
              << setw(15) << a
              << setw(15) << b
-             << setw(15) << fabs(b - a) << '\n';
+             << setw(15) << abs(b - a) << '\n';
     }
 
     cout << "Корень: " << (a + b) / 2 << '\n';
@@ -50,36 +50,12 @@ void newton(double x0) {
     cout << setw(5) << "N"
          << setw(15) << "x(n)"
          << setw(15) << "x(n+1)"
-         << setw(15) << "x(n+1) - x(n)" << '\n';
+         << setw(15) << "x(n+1)-x(n)" << '\n';
 
     int n = 0;
-    double x1;
 
-    do {
-        x1 = x0 - f(x0) / df(x0);
-
-        cout << setw(5) << n
-             << setw(15) << x0
-             << setw(15) << x1
-             << setw(15) << abs(x1 - x0) << '\n';
-
-        x0 = x1;
-        n++;
-    } while (abs(x1 - x0) > EPS);
-}
-
-void simpleIterations(double x0) {
-    cout << "\nМетод простых итераций\n";
-    cout << setw(5) << "N"
-         << setw(15) << "x(n)"
-         << setw(15) << "x(n+1)"
-         << setw(15) << "x(n+1) - x(n)" << '\n';
-
-    int n = 0;
-    double x1;
-
-    do {
-        x1 = phi(x0);
+    while (true) {
+        double x1 = x0 - f(x0) / df(x0);
 
         cout << setw(5) << n
              << setw(15) << x0
@@ -87,14 +63,40 @@ void simpleIterations(double x0) {
              << setw(15) << abs(x1 - x0) << '\n';
 
         if (abs(x1 - x0) <= EPS) {
+            cout << "Корень: " << x1 << '\n';
             break;
         }
 
         x0 = x1;
         n++;
-    } while (true);
+    }
+}
 
-    cout << "Корень: " << x1 << '\n';
+void simpleIterations(double x0) {
+    cout << "\nМетод простых итераций\n";
+    cout << setw(5) << "N"
+         << setw(15) << "x(n)"
+         << setw(15) << "x(n+1)"
+         << setw(15) << "x(n+1)-x(n)" << '\n';
+
+    int n = 0;
+
+    while (true) {
+        double x1 = phi(x0);
+
+        cout << setw(5) << n
+             << setw(15) << x0
+             << setw(15) << x1
+             << setw(15) << abs(x1 - x0) << '\n';
+
+        if (abs(x1 - x0) <= EPS) {
+            cout << "Корень: " << x1 << '\n';
+            break;
+        }
+
+        x0 = x1;
+        n++;
+    }
 }
 
 int main() {
